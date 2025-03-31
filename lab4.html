@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>Dynamic Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 0 10%;
+            align-items: stretch;
+        }
+
+        .left, .right {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+        }
+
+        section {
+            border: 2px solid #000;
+            margin: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            flex: 1;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="mainHeading">INST377 - Lab 4</h1>
+
+    <div class="container">
+        <div class="left">
+            <section>
+                <form>
+                    <label for="nameInput">Name:</label>
+                    <input type="text" id="nameInput" required>
+                    <button type="button" onclick="alertMe()">Alert Me!</button>
+                </form>
+            </section>
+
+            <section>
+                <form>
+                    <label for="textInput">Text Tester:</label>
+                    <input type="text" id="textInput">
+                    <button type="button" onclick="validateText()">Validate Text</button>
+                </form>
+            </section>
+        </div>
+
+        <div class="right">
+            <section>
+                <button onclick="changeColor()">Change Color</button>
+            </section>
+
+            <section>
+                <button onclick="addText()">Add Text</button>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function alertMe() {
+            var name = document.getElementById('nameInput').value;
+            if (name) {
+                alert('Hi ' + name + '!');
+            }
+            else {
+                alert('Please enter your name!');
+            }
+        }
+
+        let isBlue = true;
+        function changeColor() {
+            if (isBlue) {
+                document.body.style.backgroundColor = 'green';
+            }
+            else {
+                document.body.style.backgroundColor = 'blue';
+            }
+            isBlue = !isBlue;
+        }
+
+        function validateText() {
+            var text = document.getElementById('textInput').value;
+            var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (validation.test(text)) {
+                alert('Special characters are not allowed!');
+            }
+            else {
+                alert('Text is valid!');
+            }
+        }
+
+        function addText() {
+            var title = document.getElementById('mainHeading');
+            title.innerHTML += ' - Add Text';
+        }
+    </script>
+</body>
+</html>
